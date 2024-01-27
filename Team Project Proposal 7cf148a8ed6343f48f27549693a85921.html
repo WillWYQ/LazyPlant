@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Team Project Proposal</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7cf148a8-ed63-43f4-8f27-549693a85921" class="page mono"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🌹</span></div><h1 class="page-title">Team Project Proposal</h1><p class="page-description"></p></header><div class="page-body"><nav id="259bee03-c62c-4e51-9f62-62dc81371e80" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#50044387-0a3f-4c49-be5b-e543299692e4">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8388838b-f68e-4cb4-a7d3-2e2f09af6d46">Objectives <strong>and Specifications</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f77f3688-aabc-40d3-8ee9-4696317dc549">Objectives</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7d12fb5c-1d3f-4a8c-a59f-f0760f4a9478">Specification</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#133b6751-a9b3-43f5-86fe-443054dad12b">Features</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e4d18803-4dcf-4e1c-aab8-12b05283a6a7">Conceptual Design Description</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ba8eea0c-c0ca-4901-bd74-71b494f7aa56">System Overview</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3bf5be79-54ee-4638-966f-6961984633bc">Tasks and priorities</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#382899bd-df97-489b-9c94-c579fd6d48e4">Schedule bar-chart</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6f14b9db-85af-47a0-be63-8e159c302b5f">Budget</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#70a4467c-d2e6-4808-9682-c4e5bf124899">GitHub Repo</a></div></nav><h1 id="50044387-0a3f-4c49-be5b-e543299692e4" class="">Introduction</h1><p id="039695f4-a64e-4ab0-8c8e-ec13dc3f11a4" class="">This project is designed for individuals who want to maintain a green environment at home but have a busy lifestyle. It is targeted towards those who love plants but have limited time for manual care. Our primary objective is to create a safe setting for plant development by controlling soil moisture, providing supplementary light when necessary, and monitoring temperature conditions. The project aims to offer a novel solution for those who prioritize eco-friendliness in their homes but struggle to find time for plant maintenance.</p><p id="455f7bfd-dbb7-4158-a354-0f8584d8c1ca" class="">
+</p><h1 id="8388838b-f68e-4cb4-a7d3-2e2f09af6d46" class="">Objectives <strong>and Specifications</strong></h1><h2 id="f77f3688-aabc-40d3-8ee9-4696317dc549" class="">Objectives</h2><ul id="8ba98d57-eeff-4547-a604-6f77920bad24" class="bulleted-list"><li style="list-style-type:disc">Through the LCD screen, we can observe detailed information about the plant, including the values of several significant indexes (temperature, humidity, illumination intensity)</li></ul><ul id="7bae0f99-4229-4665-9060-f228b4a6014c" class="bulleted-list"><li style="list-style-type:disc">Applying sensors to obtain the corresponding values (values we mentioned above), then we deliver the signal to those devices.<ul id="49550e91-4916-413e-b8ce-85f6cd58cc66" class="bulleted-list"><li style="list-style-type:circle">Watering<p id="1dbab1ec-3076-4c5d-9998-a81a9454451d" class="">When receiving the signal from the humidity sensor, the motor in the water tank will start and extract water from the tank to increase the humidity of the soil and the air.</p></li></ul><ul id="1ca86de7-8af7-4876-a1e0-ad9f012ebf66" class="bulleted-list"><li style="list-style-type:circle">Temperature<p id="221648db-3d23-48e0-9623-178f0bafbec4" class="">If the microcontroller receives the signal from the temperature sensor, the current passes through the resistive heater, then creating the amount of heat in the outer of the flower pot.</p></li></ul><ul id="99663b94-2bd1-45e6-8d49-5d59d1bb5ca2" class="bulleted-list"><li style="list-style-type:circle">Lighting<p id="97e9a07c-bd89-45dc-b30f-a832e8347d0f" class="">The light sensor will work when the natural lighting is too dark if the sensor captures the environment is dark enough, the signal will transfer to the LED light, and the light will start to offer the light at the top of the flower pot.</p></li></ul></li></ul><ul id="43d39316-6339-4f15-9543-b74506c37459" class="bulleted-list"><li style="list-style-type:disc"> Using Bluetooth to connect the entire system to the computer, so that users can use other devices to control the system to help them their ideal environment for the plants,depending on different plants.</li></ul><h2 id="7d12fb5c-1d3f-4a8c-a59f-f0760f4a9478" class="">Specification</h2><h3 id="133b6751-a9b3-43f5-86fe-443054dad12b" class="">Features</h3><ol type="1" id="cf4ffc14-3a20-4541-a3c2-c654689f1400" class="numbered-list" start="1"><li><strong>Soil Moisture Management:</strong><ol type="a" id="853286f2-4030-4401-903e-4f8157d21bae" class="numbered-list" start="1"><li><strong>Automatic Irrigation Adjustment:</strong><ul id="5d816ddb-3b00-4624-af25-864d26fa9e68" class="bulleted-list"><li style="list-style-type:disc">Implementation of an automatic irrigation system that dynamically adjusts watering based on real-time soil moisture levels.</li></ul></li></ol><ol type="a" id="21ba46de-ca73-4f79-b154-e18b73e3606f" class="numbered-list" start="2"><li><strong>Customizable Moisture Thresholds:</strong><ul id="c3403c72-e7bf-4a42-a5e2-a6235e24c9a4" class="bulleted-list"><li style="list-style-type:disc">Customization of moisture thresholds to accommodate the specific moisture requirements of different plant types.</li></ul></li></ol></li></ol><ol type="1" id="b265b2dd-3a47-41cc-a5be-dec062b618a0" class="numbered-list" start="2"><li><strong>Lighting Control:</strong><ol type="a" id="8ca72bb1-e52c-4cac-bf60-4a93bf25f7a2" class="numbered-list" start="1"><li><strong>Ambient Light Monitoring:</strong><ul id="576c289a-6360-48de-85f7-dab52371b399" class="bulleted-list"><li style="list-style-type:disc">Monitor ambient light conditions.</li></ul></li></ol><ol type="a" id="74334972-58f2-492f-a9ea-1c0b354d0329" class="numbered-list" start="2"><li><strong>Supplementary LED Lighting:</strong><ul id="9e7cb853-075e-4156-ba48-fd09c16214d6" class="bulleted-list"><li style="list-style-type:disc">Supplementary LED lighting to maintain optimal light intensity or duration.<ul id="e141b37b-267b-4b16-be64-43b5e449f5d9" class="bulleted-list"><li style="list-style-type:circle">Adjustable light intensity, enabling customization to suit the specific needs of different plant species.</li></ul><ul id="a02c52bb-3e85-4da4-ab22-aa0aa5de23f9" class="bulleted-list"><li style="list-style-type:circle">Automatic extension of lighting duration if natural light fails to meet the plants&#x27; requirements.</li></ul></li></ul></li></ol><ol type="a" id="e036ea0a-1f02-4b27-b7b8-4706ad6e92e3" class="numbered-list" start="3"><li><strong>Automated Light Intensity Control:</strong><ul id="cb06b4f3-1f6e-4b07-9cc7-9f60f2bc373d" class="bulleted-list"><li style="list-style-type:disc">Automated light intensity adjustments tailored to predefined profiles for different plant varieties.</li></ul></li></ol><ol type="a" id="8e87e107-90fe-4776-8a78-8b332ca7e3f7" class="numbered-list" start="4"><li><strong>Manual Light Intensity Control:</strong><ul id="97670356-0882-4321-aea9-da889bef06d1" class="bulleted-list"><li style="list-style-type:disc">User-defined control allows for manual adjustments of light intensity based on individual preferences or specific plant observations.</li></ul></li></ol></li></ol><ol type="1" id="bd3bc907-1972-4952-8269-9bf2a95dbbb0" class="numbered-list" start="3"><li><strong>Temperature Regulation:</strong><ol type="a" id="1d4fb1da-782b-4966-856f-b86437b981c6" class="numbered-list" start="1"><li><strong>Environmental and Soil Temperature Monitoring:</strong><ul id="24401841-f1ad-41a5-a91f-da4c57d29abc" class="bulleted-list"><li style="list-style-type:disc">Monitor both environmental and soil temperatures in real time.</li></ul></li></ol><ol type="a" id="ff41d553-7672-4d0e-b603-a7770a969d33" class="numbered-list" start="2"><li><strong>Indirect Heating or Cooling of Soil Temperature:</strong><ul id="f4a28b23-bfa3-4722-9f7d-0d82f6bf2869" class="bulleted-list"><li style="list-style-type:disc">Indirectly adjusting soil temperature, ensuring optimal conditions for plant growth.</li></ul></li></ol></li></ol><ol type="1" id="5328e9f4-dfbd-406e-8028-15e3ea01ab47" class="numbered-list" start="4"><li><strong>User Interface:</strong><ol type="a" id="f32672cd-611a-45ac-9595-cd5074621013" class="numbered-list" start="1"><li><strong>LCD Screen for Real-time Environmental Data Display:</strong><ul id="77390b4e-5f59-4b2a-bcaf-1b554a802ca3" class="bulleted-list"><li style="list-style-type:disc">Integration of an LCD screen to provide users with real-time insights into the plant environment.</li></ul><ul id="44fff988-7c89-4930-b863-73af54b94467" class="bulleted-list"><li style="list-style-type:disc">Display of current temperature and moisture levels.</li></ul><ul id="52e35dec-e4b4-47d8-ae34-00250bb6e1ee" class="bulleted-list"><li style="list-style-type:disc">Summary of temperature and moisture trends.</li></ul><ul id="553d47a0-b50a-4500-b4d6-62327ce4a052" class="bulleted-list"><li style="list-style-type:disc">Presentation of today&#x27;s cumulative light exposure duration.</li></ul><ul id="014fbd33-c2fd-4cce-9424-12cb61ab06ce" class="bulleted-list"><li style="list-style-type:disc">Indication of the number of days elapsed since sowing for enhanced monitoring.</li></ul></li></ol><ol type="a" id="9d5b062c-7d9e-4fec-9d91-44019f3c4ce6" class="numbered-list" start="2"><li><strong>Control Button for Preference Settings:</strong><ul id="7c6ac748-35c0-4417-844a-9217156808e1" class="bulleted-list"><li style="list-style-type:disc">Control through Computer Programs or Control Buttons</li></ul><ul id="8582fa3c-98f2-4911-b38a-cb745683b8de" class="bulleted-list"><li style="list-style-type:disc">Enabling users to set and customize their preferred environmental settings with ease.</li></ul></li></ol></li></ol><h1 id="e4d18803-4dcf-4e1c-aab8-12b05283a6a7" class="">Conceptual Design Description</h1><p id="23bc1d43-c4f3-49a0-bd2d-60306d4de4ab" class="">
+</p><h2 id="ba8eea0c-c0ca-4901-bd74-71b494f7aa56" class="">System Overview</h2><ul id="5d0914aa-55d3-4c37-9f03-543613998bf0" class="bulleted-list"><li style="list-style-type:disc">Analog voltage authorization<p id="5123492c-1242-4fab-8059-43a2b43226eb" class=""> Temperature sensor in tank</p><p id="1ec427e8-8895-49bf-ae4d-a2b5cdd8927f" class=""> light sensor</p><p id="d2332011-1310-49a1-8c38-981f7dfb62a7" class=""> Humidity sensor in pot</p><p id="14e3a2cf-0507-468f-8f2a-16840048c784" class=""> Temperature sensor in pot</p></li></ul><ul id="dba7d47f-bad1-4753-9972-ceddeaef6b00" class="bulleted-list"><li style="list-style-type:disc">Bluetooth connection with the users’ device</li></ul><ul id="bd6672ee-bb6c-4453-bd7d-ca004a50dd44" class="bulleted-list"><li style="list-style-type:disc">PWM control in LED panel</li></ul><ul id="adc5e959-e607-4388-8f6e-58255c294d35" class="bulleted-list"><li style="list-style-type:disc">Digital voltage authorization</li></ul><ul id="09ea806b-e5fb-48f2-a3d6-17de494c8274" class="bulleted-list"><li style="list-style-type:disc">Serial connection with LCD screen</li></ul><ul id="651f5fb1-fc8b-468f-9330-094e8c55e81f" class="bulleted-list"><li style="list-style-type:disc">Additional DC power connecting with other motors </li></ul><p id="3d2f68b7-1c9a-4fda-bab9-09a4ea158083" class="">
+</p><figure id="b39bafda-671f-4d91-98a5-9925c8018c74" class="image"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant.drawio.png"><img style="width:773px" src="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant.drawio.png"/></a></figure><p id="43785b25-129d-4b31-8651-ce8aa5b32f38" class="">
+</p><p id="d0e7254f-893f-40a2-b46b-68de9a9351a6" class="">
+</p><p id="142ba9f1-1cfe-48c3-884a-a7b94fcce1eb" class="">
+</p><h1 id="3bf5be79-54ee-4638-966f-6961984633bc" class="">Tasks and priorities</h1><ul id="ba3c6082-01ad-41ca-a14f-3d558e4cfa3e" class="bulleted-list"><li style="list-style-type:disc">Implementing sensors into the plot</li></ul><ul id="811037ef-447f-4edc-8be6-ccf64fdae260" class="bulleted-list"><li style="list-style-type:disc">Assembling the plots with the water tank and other heating and cooling module</li></ul><ul id="8741fb10-7395-46c2-bef0-ba05f42cceab" class="bulleted-list"><li style="list-style-type:disc">Develop modules for caring for the plants<ul id="0ebe6aa6-98bb-473f-b05c-a0461cbb18fb" class="bulleted-list"><li style="list-style-type:circle">Watering module</li></ul><ul id="f0d5850b-0455-49a6-a39c-e00e3f313048" class="bulleted-list"><li style="list-style-type:circle">temperature module</li></ul><ul id="50ea24ae-7aa2-4946-9821-ed9b5997f3a8" class="bulleted-list"><li style="list-style-type:circle">lighting module</li></ul></li></ul><ul id="eb39f5c3-527d-4766-a905-3adb808aab2f" class="bulleted-list"><li style="list-style-type:disc">Develop Bluetooth for users editing the system on other devices (PC)</li></ul><ul id="3ad5a425-9ca7-4de9-b8f4-cbf0f0d2e4a7" class="bulleted-list"><li style="list-style-type:disc">Test and debug for the final presentation</li></ul><h1 id="382899bd-df97-489b-9c94-c579fd6d48e4" class="">Schedule bar-chart</h1><div id="11786138-c12f-46b8-b796-297f2d6b7ee1" class="collection-content"><h4 class="collection-title">LazyPlant</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th></tr></thead><tbody><tr id="b5ccec45-63b7-45a6-b7c0-e4ec0326d946"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Assemble%20the%20pot%20with%20the%20sensors%20b5ccec4563b745a6b7c0e4ec0326d946.html">Assemble the pot with the sensors</a></td><td class="cell-ELP_"><time>@February 14, 2024 → February 17, 2024</time></td><td class="cell-vceA"></td></tr><tr id="85462fb2-443b-45c4-9219-d035c4cbcab3"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Implement%20Light%20Control%20Module%2085462fb2443b45c49219d035c4cbcab3.html">Implement Light Control Module</a></td><td class="cell-ELP_"><time>@January 31, 2024 → February 3, 2024</time></td><td class="cell-vceA"><span class="selected-value select-value-color-red">Light Control</span></td></tr><tr id="8d0c7e38-1d3d-44fc-9cb7-0dc7c7cb4b17"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Temperature%20Module%208d0c7e381d3d44fc9cb70dc7c7cb4b17.html">Temperature Module</a></td><td class="cell-ELP_"><time>@February 3, 2024 → February 6, 2024</time></td><td class="cell-vceA"><span class="selected-value select-value-color-brown">Temperature Control</span></td></tr><tr id="d2483a79-1e49-4def-9ccc-60c4a19e20d6"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Humidity%20Module%20d2483a791e494def9ccc60c4a19e20d6.html">Humidity Module</a></td><td class="cell-ELP_"><time>@February 6, 2024 → February 10, 2024</time></td><td class="cell-vceA"><span class="selected-value select-value-color-green">HumidityControl</span></td></tr><tr id="72ac8ea5-460f-4817-819c-3acf966870c8"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Design%20watering%20module%2072ac8ea5460f4817819c3acf966870c8.html">Design watering module</a></td><td class="cell-ELP_"><time>@February 9, 2024 → February 13, 2024</time></td><td class="cell-vceA"></td></tr><tr id="791e325f-c285-4270-afcf-c264c116431b"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Design%20Bluetooth%20module%20791e325fc2854270afcfc264c116431b.html">Design Bluetooth module</a></td><td class="cell-ELP_"><time>@February 12, 2024 → February 14, 2024</time></td><td class="cell-vceA"></td></tr><tr id="ffa080bf-d765-494b-9df4-33fb09844a2d"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Design%20heating%20module%20ffa080bfd765494b9df433fb09844a2d.html">Design heating module</a></td><td class="cell-ELP_"><time>@February 7, 2024 → February 10, 2024</time></td><td class="cell-vceA"></td></tr><tr id="b9ebc21f-312c-453c-8a33-ae735f6a25c2"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Progress%20Report%20b9ebc21f312c453c8a33ae735f6a25c2.html">Progress Report</a></td><td class="cell-ELP_"><time>@February 9, 2024</time></td><td class="cell-vceA"><span class="selected-value select-value-color-gray">Due</span></td></tr><tr id="4fafbd6c-ccd2-454c-888e-666f12b683ed"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Final%20Presentation%204fafbd6cccd2454c888e666f12b683ed.html">Final Presentation</a></td><td class="cell-ELP_"><time>@February 20, 2024</time></td><td class="cell-vceA"><span class="selected-value select-value-color-gray">Due</span></td></tr><tr id="d25425e9-89c2-4abb-a14e-dd071752dc0a"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Order%20and%20determined%20parts%20d25425e989c24abba14edd071752dc0a.html">Order and determined parts</a></td><td class="cell-ELP_"><time>@January 29, 2024 → January 31, 2024</time></td><td class="cell-vceA"></td></tr><tr id="acc96d87-303d-4ad5-ba1e-ee8bd4756da3"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Project%20Proposal%20acc96d87303d4ad5ba1eee8bd4756da3.html">Project Proposal</a></td><td class="cell-ELP_"><time>@January 26, 2024</time></td><td class="cell-vceA"></td></tr><tr id="a8be589e-f52f-45a0-bf79-170e1dbcddfb"><td class="cell-title"><a href="Team%20Project%20Proposal%207cf148a8ed6343f48f27549693a85921/LazyPlant%2011786138c12f46b8b796297f2d6b7ee1/Draw%20schematic%20a8be589ef52f45a0bf79170e1dbcddfb.html">Draw schematic </a></td><td class="cell-ELP_"><time>@January 27, 2024 → January 31, 2024</time></td><td class="cell-vceA"></td></tr></tbody></table><br/><br/></div><p id="761a1fda-2b2f-4f79-b06d-a7a2285c0795" class="">
+</p><p id="86b8cd6b-45cd-4424-b901-454dac7d6099" class="">
+</p><h1 id="6f14b9db-85af-47a0-be63-8e159c302b5f" class="">Budget</h1><table id="0596f12e-1222-4e6a-adf7-7d345a97c506" class="simple-table"><tbody><tr id="9939703f-573a-4a31-9f9c-b760312b1c5b"><td id="vd;`" class="" style="width:323.4270935058594px">Name</td><td id="mByh" class="">Category </td><td id="_twk" class="">Amount</td><td id="oes~" class="">Single Price</td><td id="RU@J" class="">Total Price</td></tr><tr id="eead5f50-52ad-48d0-b50f-869f943dfc4d"><td id="vd;`" class="" style="width:323.4270935058594px">Water Tank</td><td id="mByh" class="">peripheral</td><td id="_twk" class="">1</td><td id="oes~" class="">$10</td><td id="RU@J" class="">$10</td></tr><tr id="4b0a1b05-cd5f-4a63-86de-42e593eecbd2"><td id="vd;`" class="" style="width:323.4270935058594px">Heat and Cold Conduction Material</td><td id="mByh" class="">material</td><td id="_twk" class="">N/A</td><td id="oes~" class="">N/A</td><td id="RU@J" class="">$10</td></tr><tr id="6a33c9a8-9d11-410b-bdfe-228288b22fed"><td id="vd;`" class="" style="width:323.4270935058594px">Resistive Heater</td><td id="mByh" class="">EE stuff</td><td id="_twk" class="">4</td><td id="oes~" class="">$4</td><td id="RU@J" class="">$16</td></tr><tr id="a1476a69-4bfb-4ba9-a30c-62f30bc8b6f3"><td id="vd;`" class="" style="width:323.4270935058594px">12V power</td><td id="mByh" class="">power</td><td id="_twk" class="">1</td><td id="oes~" class="">$5</td><td id="RU@J" class="">$5</td></tr><tr id="dbcf7e01-8cab-4fbf-8475-4fa0c35ede77"><td id="vd;`" class="" style="width:323.4270935058594px">Semiconductor Refrigeration Sheet</td><td id="mByh" class="">EE stuff</td><td id="_twk" class="">3</td><td id="oes~" class="">$15</td><td id="RU@J" class="">$45</td></tr><tr id="40232d61-a41a-48c7-a641-5bb666443b5f"><td id="vd;`" class="" style="width:323.4270935058594px">Flower Pot</td><td id="mByh" class="">peripheral</td><td id="_twk" class="">1</td><td id="oes~" class="">$6</td><td id="RU@J" class="">$6</td></tr><tr id="58cd5043-4704-4b9c-9fd4-412bff7aad5b"><td id="vd;`" class="" style="width:323.4270935058594px">LED Panel </td><td id="mByh" class="">EE stuff</td><td id="_twk" class="">1</td><td id="oes~" class="">$15</td><td id="RU@J" class="">$15</td></tr><tr id="3207ed71-cdc5-4561-a472-e649d5dc5e44"><td id="vd;`" class="" style="width:323.4270935058594px">Total price</td><td id="mByh" class=""></td><td id="_twk" class=""></td><td id="oes~" class=""></td><td id="RU@J" class="">$107</td></tr></tbody></table><p id="13c75438-c5dc-48e7-bc20-545a7744bb72" class="">
+</p><h1 id="70a4467c-d2e6-4808-9682-c4e5bf124899" class="">GitHub Repo</h1><figure id="7c2db12b-5730-49c7-a2d5-034a131101e6"><a href="https://github.com/WillWYQ/LazyPlant" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - WillWYQ/LazyPlant: &quot;Welcome to LazyPlant—nurturing plants effortlessly in a busy world. Embrace &#x27;Lazy People, Lazy World.&#x27; Simplify plant care and let your green companions thrive with ease!&quot;</div><div class="bookmark-description">&amp;amp;quot;Welcome to LazyPlant—nurturing plants effortlessly in a busy world. Embrace &amp;amp;#39;Lazy People, Lazy World.&amp;amp;#39; Simplify plant care and let your green companions thrive with ease!&amp;...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/WillWYQ/LazyPlant</div></div><img src="https://opengraph.githubassets.com/726fbaed4f7bfc072789a045e745c8554914b3302f0a9e9fca127ba8a3c90e16/WillWYQ/LazyPlant" class="bookmark-image"/></a></figure><p id="60209e92-83f9-4fe8-8b79-8efe389315a8" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
