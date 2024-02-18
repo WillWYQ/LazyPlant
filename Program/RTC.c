@@ -16,8 +16,8 @@ void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth, un
     // Unlock RTC key protected registers
     RTC_C->CTL0 = RTC_C_KEY;
 
-    // Reset RTC control register to disable RTC and alarm
     RTC_C->CTL13 = 0;
+
 
     RTC_C -> TIM0 = second << RTC_C_TIM0_SEC_OFS |  min << RTC_C_TIM0_MIN_OFS;
     RTC_C -> TIM1 = hour << RTC_C_TIM1_HOUR_OFS | dayofWeek << RTC_C_TIM1_DOW_OFS;
@@ -29,8 +29,9 @@ void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth, un
 
     RTC_C -> CTL0 |= RTC_C_CTL0_AIE;
 
-    // Start RTC in calendar mode
-    RTC_C -> CTL13 = RTC_C_CTL13_HOLD;
+    RTC_C -> CTL13 &= ~RTC_C_CTL13_HOLD;
+    RTC_C -> CTL13 |= RTC_C_CTL13_MODE;
+    //    RTC_C -> CTL13 |= RTC_C_CTL13_CALF__1;
 
     // Lock the RTC registers
     RTC_C -> CTL0 &= ~RTC_C_KEY;
@@ -57,10 +58,11 @@ void RTC_CountDown(unsigned int hour, unsigned int min) {
     if (alarm_hour >= 24) {
         alarm_hour -= 24; // Adjust hour if overflows
     }
-    printf("alarm_minute: %d",alarm_minute);
 
     // Set alarm time
     RTC_C -> AMINHR = (alarm_hour << RTC_C_AMINHR_HOUR_OFS) | (alarm_minute << RTC_C_AMINHR_MIN_OFS) | RTC_C_AMINHR_HOURAE | RTC_C_AMINHR_MINAE;
+
+    RTC_C -> CTL0 |= RTC_C_CTL0_AIE;
 
     // Lock the RTC registers
     RTC_C->CTL0 &= ~RTC_C_KEY;
