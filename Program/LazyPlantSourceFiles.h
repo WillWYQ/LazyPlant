@@ -31,5 +31,18 @@
 #endif /* LAZYPLANTLED_H_*/
 
 
+#ifndef sensor_H_
+#define sensor_H_
+
+#define lightPin P6
+#define lightBit BIT0
+
+#define moisturePin P6
+#define moistureBit BIT1
+
+#define tempPin P5
+#define tempBit BIT4
+#endif
+
 
 #endif /* LAZYPLANTSOURCEFILES_H_ */
