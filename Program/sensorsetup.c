@@ -4,7 +4,7 @@
  *  Created on: Feb 18, 2024
  *      Author: zhuy16
  */
-#include <All_header.h>
+#include "LazyPlantSourceFiles.h"
 
 static volatile uint16_t light;
 static volatile uint16_t moisture;

@@ -11,6 +11,9 @@
 
 #include "LazyPlantSourceFiles.h"
 
+#define wateringRelayPort P1
+#define wateringRelayPin BIT5
+
 
 #endif /* LAZYPLANTWATERING_H_ */
 

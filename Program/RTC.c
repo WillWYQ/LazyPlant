@@ -6,35 +6,41 @@
  */
 #include "LazyPlantSourceFiles.h"
 
-void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth, unsigned int dayofWeek, unsigned int hour, unsigned int min, unsigned int second);
+void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
+              unsigned int dayofWeek, unsigned int hour, unsigned int min,
+              unsigned int second);
 void RTC_CountDown(unsigned int hour, unsigned int min);
-void RTC_GetCurrentTimeString();
+void RTC_GetCurrentTimeString(char* buffer, unsigned int bufferSize);
 void RTC_C_IRQHandler(void);
 
 
-void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth, unsigned int dayofWeek, unsigned int hour, unsigned int min, unsigned int second) {
+void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
+              unsigned int dayofWeek, unsigned int hour, unsigned int min,
+              unsigned int second) {
     // Unlock RTC key protected registers
     RTC_C->CTL0 = RTC_C_KEY;
 
+    // Clear control registers to stop RTC and reset configuration
     RTC_C->CTL13 = 0;
 
+    // Set time and date
+    RTC_C->TIM0 = (second << RTC_C_TIM0_SEC_OFS) | (min << RTC_C_TIM0_MIN_OFS);
+    RTC_C->TIM1 = (hour << RTC_C_TIM1_HOUR_OFS) | (dayofWeek << RTC_C_TIM1_DOW_OFS);
+    RTC_C->DATE = (dayofMonth << RTC_C_DATE_DAY_OFS) | (month << RTC_C_DATE_MON_OFS);
+    RTC_C->YEAR = (year << RTC_C_YEAR_YEAR_OFS);
 
-    RTC_C -> TIM0 = second << RTC_C_TIM0_SEC_OFS |  min << RTC_C_TIM0_MIN_OFS;
-    RTC_C -> TIM1 = hour << RTC_C_TIM1_HOUR_OFS | dayofWeek << RTC_C_TIM1_DOW_OFS;
-    RTC_C -> DATE = dayofMonth << RTC_C_DATE_DAY_OFS | month << RTC_C_DATE_MON_OFS;
-    RTC_C -> YEAR = year << RTC_C_YEAR_YEAR_OFS;
+    // Enable RTC ready interrupt (optional) and alarm interrupt
+    RTC_C->CTL0 |= RTC_C_CTL0_RDYIE | RTC_C_CTL0_AIE;
 
-    // Enable RTC ready interrupt (optional)
-    RTC_C -> CTL0 |= RTC_C_CTL0_RDYIE;
+    // Start the RTC in calendar mode
+    RTC_C->CTL13 &= ~RTC_C_CTL13_HOLD;
+    RTC_C->CTL13 |= RTC_C_CTL13_MODE;
 
-    RTC_C -> CTL0 |= RTC_C_CTL0_AIE;
+    // Lock the RTC registers
+    RTC_C->CTL0 &= ~RTC_C_KEY;
 
-    RTC_C -> CTL13 &= ~RTC_C_CTL13_HOLD;
-    RTC_C -> CTL13 |= RTC_C_CTL13_MODE;
-    //    RTC_C -> CTL13 |= RTC_C_CTL13_CALF__1;
-
-    // Lock the RTC registars
-    RTC_C -> CTL0 &= ~RTC_C_KEY;
+    // Enable RTC interrupt in NVIC
+    NVIC_EnableIRQ(RTC_C_IRQn);
 }
 
 void RTC_CountDown(unsigned int hour, unsigned int min) {
@@ -66,10 +72,6 @@ void RTC_CountDown(unsigned int hour, unsigned int min) {
 
     // Lock the RTC registers
     RTC_C->CTL0 &= ~RTC_C_KEY;
-
-    // Enable NVIC interrupt
-    NVIC_EnableIRQ(RTC_C_IRQn);
-    __enable_irq();
 }
 
 

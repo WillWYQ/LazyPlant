@@ -9,9 +9,9 @@
 
 
 void wateringInit(){
-    wateringRelayPort->SEL0 &= ~wateringRelayPin;
-    wateringRelayPort->SEL1 &= ~wateringRelayPin;
-    wateringRelayPort->DIR |= wateringRelayPin;
+    wateringRelayPort -> SEL0 &= ~wateringRelayPin;
+    wateringRelayPort -> SEL1 &= ~wateringRelayPin;
+    wateringRelayPort -> DIR |= wateringRelayPin;
 }
 
 void wateringTurnON(){
