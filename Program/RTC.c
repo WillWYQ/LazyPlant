@@ -33,7 +33,7 @@ void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth, un
     RTC_C -> CTL13 |= RTC_C_CTL13_MODE;
     //    RTC_C -> CTL13 |= RTC_C_CTL13_CALF__1;
 
-    // Lock the RTC registers
+    // Lock the RTC registars
     RTC_C -> CTL0 &= ~RTC_C_KEY;
 }
 
@@ -69,6 +69,7 @@ void RTC_CountDown(unsigned int hour, unsigned int min) {
 
     // Enable NVIC interrupt
     NVIC_EnableIRQ(RTC_C_IRQn);
+    __enable_irq();
 }
 
 
@@ -92,6 +93,7 @@ void RTC_C_IRQHandler(void) {
         // Handle the alarm event here
         printf("time is up");
         RGBLED_toggleGreen();
+
         // Clear the interrupt flag
         RTC_C->CTL0 &= ~(RTC_C_CTL0_AIFG);
     }
