@@ -9,7 +9,7 @@
  */
 
 
-#include "rgbLED.h"
+#include <LazyPlantrgbLED.h>
 
 
 #define LED1PIN BIT0

@@ -1,17 +1,10 @@
 /*
- * RTC.c
+ * LazyPlantRTC.c
  *
  *  Created on: Feb 17, 2024
  *      Author: willwyq
  */
-#include "LazyPlantSourceFiles.h"
-
-void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
-              unsigned int dayofWeek, unsigned int hour, unsigned int min,
-              unsigned int second);
-void RTC_CountDown(unsigned int hour, unsigned int min);
-void RTC_GetCurrentTimeString(char* buffer, unsigned int bufferSize);
-void RTC_C_IRQHandler(void);
+#include "LazyPlantRTC.h"
 
 
 void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
@@ -19,9 +12,7 @@ void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
               unsigned int second) {
     // Unlock RTC key protected registers
     RTC_C->CTL0 = RTC_C_KEY;
-
-    // Clear control registers to stop RTC and reset configuration
-    RTC_C->CTL13 = 0;
+    RTC_C->CTL13 = 0; // Temporarily halt RTC for configuration
 
     // Set time and date
     RTC_C->TIM0 = (second << RTC_C_TIM0_SEC_OFS) | (min << RTC_C_TIM0_MIN_OFS);
@@ -29,25 +20,51 @@ void RTC_Init(unsigned int year, unsigned int month, unsigned int dayofMonth,
     RTC_C->DATE = (dayofMonth << RTC_C_DATE_DAY_OFS) | (month << RTC_C_DATE_MON_OFS);
     RTC_C->YEAR = (year << RTC_C_YEAR_YEAR_OFS);
 
-    // Enable RTC ready interrupt (optional) and alarm interrupt
-    RTC_C->CTL0 |= RTC_C_CTL0_RDYIE | RTC_C_CTL0_AIE;
-
-    // Start the RTC in calendar mode
+    // Enable RTC to run in calendar mode and start it
     RTC_C->CTL13 &= ~RTC_C_CTL13_HOLD;
-    RTC_C->CTL13 |= RTC_C_CTL13_MODE;
+
+    // Lock the RTC registers and enable RTC interrupt for time events
+    RTC_C->CTL0 = RTC_C_KEY;
+    RTC_C->CTL0 |= RTC_C_CTL0_TEVIE;
+    RTC_C->CTL13 |= RTC_C_CTL13_TEV_0;
+    RTC_C->CTL0 &= ~(RTC_C_CTL0_TEVIFG);
 
     // Lock the RTC registers
     RTC_C->CTL0 &= ~RTC_C_KEY;
-
-    // Enable RTC interrupt in NVIC
     NVIC_EnableIRQ(RTC_C_IRQn);
+
+//    NVIC->ISER[0] |= 1 << ((RTC_C_IRQn) & 31);
+
+}
+
+void RTC_enableAlarm() {
+    // Unlock RTC key protected registers
+    RTC_C -> CTL0 = RTC_C_KEY;
+    // Ensure the alarm interrupt is enabled
+    RTC_C->CTL0 |= RTC_C_CTL0_AIE; // Enable alarm interrupt
+    RTC_C->CTL0 &= ~RTC_C_KEY; // Lock the RTC registers after configuration
+}
+void RTC_disableAlarm() {
+    // Unlock RTC key protected registers
+    RTC_C -> CTL0 = RTC_C_KEY;
+    // Ensure the alarm interrupt is enabled
+    RTC_C->CTL0 &= ~RTC_C_CTL0_AIE; // Enable alarm interrupt
+    RTC_C->CTL0 &= ~RTC_C_KEY; // Lock the RTC registers after configuration
+}
+
+void RTC_SetAlarm(unsigned int hour, unsigned int min) {
+    // Set alarm time
+    RTC_C -> AMINHR = (hour << RTC_C_AMINHR_HOUR_OFS) | (min << RTC_C_AMINHR_MIN_OFS) | RTC_C_AMINHR_HOURAE | RTC_C_AMINHR_MINAE;
+
+    RTC_C -> CTL0 |= RTC_C_CTL0_AIE;
+    RTC_C->CTL0 |= RTC_C_CTL0_AIE; // Enable alarm interrupt
+    RTC_C->CTL0 &= ~RTC_C_KEY; // Lock the RTC registers after configuration
 }
 
 void RTC_CountDown(unsigned int hour, unsigned int min) {
     unsigned int alarm_hour, alarm_minute;
 
-    // Unlock RTC key protected registers
-    RTC_C -> CTL0 = RTC_C_KEY;
+
 
     // Calculate time for 30 minutes from now
     alarm_minute = (RTC_C -> TIM0 & RTC_C_TIM0_MIN_MASK) >> RTC_C_TIM0_MIN_OFS;
@@ -65,13 +82,7 @@ void RTC_CountDown(unsigned int hour, unsigned int min) {
         alarm_hour -= 24; // Adjust hour if overflows
     }
 
-    // Set alarm time
-    RTC_C -> AMINHR = (alarm_hour << RTC_C_AMINHR_HOUR_OFS) | (alarm_minute << RTC_C_AMINHR_MIN_OFS) | RTC_C_AMINHR_HOURAE | RTC_C_AMINHR_MINAE;
-
-    RTC_C -> CTL0 |= RTC_C_CTL0_AIE;
-
-    // Lock the RTC registers
-    RTC_C->CTL0 &= ~RTC_C_KEY;
+    RTC_SetAlarm(alarm_hour,alarm_minute);
 }
 
 
@@ -91,12 +102,19 @@ void RTC_GetCurrentTimeString(char* buffer, unsigned int bufferSize) {
 
 // RTC ISR
 void RTC_C_IRQHandler(void) {
-    if (RTC_C->CTL0 & RTC_C_CTL0_AIFG) {
-        // Handle the alarm event here
-        printf("time is up");
-        RGBLED_toggleGreen();
+    // Check if this is a time event interrupt (e.g., every minute)
+    if (RTC_C->CTL0 & RTC_C_CTL0_TEVIFG & WAKE_UP_FROM_TIME_EVENT) {
+        overallCheck();
+        RTC_C->CTL0 = RTC_C_KEY; // Unlock
+        RTC_C->CTL0 &= ~RTC_C_CTL0_TEVIFG; // Clear flag
+        RTC_C->CTL0 &= ~RTC_C_KEY; // Lock again
+    }
 
-        // Clear the interrupt flag
-        RTC_C->CTL0 &= ~(RTC_C_CTL0_AIFG);
+    // Check if this is an alarm interrupt
+    if (RTC_C->CTL0 & RTC_C_CTL0_AIFG & WAKE_UP_FROM_ALARM) {
+        overallCheck();
+        RTC_C->CTL0 = RTC_C_KEY; // Unlock
+        RTC_C->CTL0 &= ~RTC_C_CTL0_AIFG; // Clear flag
+        RTC_C->CTL0 &= ~RTC_C_KEY; // Lock again
     }
 }

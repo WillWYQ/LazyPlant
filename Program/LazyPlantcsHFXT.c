@@ -15,8 +15,7 @@
  *
  */
 
-#include "msp.h"
-#include "csHFXT.h"
+#include <LazyPlantcsHFXT.h>
 
 void error(void);
 

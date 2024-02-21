@@ -9,8 +9,8 @@
  *      Author:
  */
 
-#ifndef CSHFXT_H_
-#define CSHFXT_H_
+#ifndef LAZYPLANTCSHFXT_H_
+#define LAZYPLANTCSHFXT_H_
 
 //*****************************************************************************
 //
@@ -48,4 +48,4 @@ extern void configHFXT(void);
 #endif
 
 
-#endif /* CSHFXT_H_ */
+#endif /* LAZYPLANTCSHFXT_H_ */

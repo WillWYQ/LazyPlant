@@ -1,62 +1,38 @@
-/*
- * LazyPlantSourceFiles.h
- *
- * Created on: Feb 17, 2024
- * Author: willwyq
- */
-
 #ifndef LAZYPLANTSOURCEFILES_H_
 #define LAZYPLANTSOURCEFILES_H_
 
-// Overall header
+// Include MSP432 specific headers and standard libraries
 #include "msp.h"
 #include <stdbool.h>
-#include <stdio.h>  // For snprintf and printf
+#include <stdio.h>
+#include <stdint.h>
 
-//RTC
-#ifndef RTC_H_
-#define RTC_H_
+// System-wide definitions
+#define SMCLK_FREQUENCY 12000000 // Use a more descriptive name for SMCLK
 
-#endif
+#define TIMER32_FREQ 3000000
+#define WATER_TANK_CAPACITY 500 // in mL
+#define DESIRED_MOISTURE_LEVEL 1000
+#define WATER_INFLUENCE_RATIO 30
+#define FLOW_RATE 20 // in mL/s
+#define DESIRED_LIGHT_INTENSITY 3000
+#define LIGHT_ADJUSTMENT_FACTOR (255.0 / DESIRED_LIGHT_INTENSITY)
 
-// Watering System
-#ifndef LAZYPLANTWATERING_H_
-#define LAZYPLANTWATERING_H_
+// RTC definitions
+#define WAKE_UP_FROM_ALARM 0
+#define WAKE_UP_FROM_TIME_EVENT 1 // For project demonstration purposes
 
+#include "LazyPlantRTC.h"
 #include "LazyPlantWatering.h"
-
-#endif // LAZYPLANTWATERING_H_
-
-// LED
-#ifndef LAZYPLANTLED_H_
-#define LAZYPLANTLED_H_
-
-#include "rgbLED.h"
-
-#endif // LAZYPLANTLED_H_
-
-// Sensors
-#ifndef SENSOR_H_
-#define SENSOR_H_
-
-#define lightPin P6
-#define lightBit BIT0
-
-#define moisturePin P6
-#define moistureBit BIT1
-
-#define tempPin P5
-#define tempBit BIT4
-
-#endif // SENSOR_H_
-
-// Bluetooth
-#ifndef LAZYPLANTBLUETOOTH_H_
-#define LAZYPLANTBLUETOOTH_H_
-
 #include "LazyPlantBluetooth.h"
+#include "LazyPlantSystem.h"
+#include "LazyPlantWarning.h"
+#include "LazyPlantLighting.h"
+#include "LazyPlantAnalogSensor.h"
+#include "LazyPlantcsHFXT.h"
+#include "LazyPlantcsLFXT.h"
+#include "LazyPlantrgbLED.h"
 
-#endif // LAZYPLANTBLUETOOTH_H_
 
 
-#endif /* LAZYPLANTSOURCEFILES_H_ */
+#endif // LAZYPLANTSOURCEFILES_H_

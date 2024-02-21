@@ -8,8 +8,8 @@
  *      Author:
  */
 
-#ifndef RGBLED_H_
-#define RGBLED_H_
+#ifndef LAZYPLANTRGBLED_H_
+#define LAZYPLANTRGBLED_H_
 
 //*****************************************************************************
 //
@@ -155,4 +155,4 @@ extern void LED_init(short led);
 }
 #endif
 
-#endif /* RGBLED_H_ */
+#endif /* LAZYPLANTRGBLED_H_ */
